@@ -24,7 +24,7 @@ class ContactForm extends CFormModel
 			// email has to be a valid email address
 			array('email', 'email'),
 			// verifyCode needs to be entered correctly
-			array('verifyCode', 'captcha', 'allowEmpty'=>!extension_loaded('gd')),
+			array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements()),
 		);
 	}
 
@@ -36,7 +36,11 @@ class ContactForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'verifyCode'=>'Verification Code',
+			'name'=>Yii::t('ui', 'Name'),
+			'email'=>Yii::t('ui', 'Email'),
+			'subject'=>Yii::t('ui', 'Subject'),
+			'body'=>Yii::t('ui', 'Body'),
+			'verifyCode'=>Yii::t('ui', 'Verification Code'),
 		);
 	}
 }

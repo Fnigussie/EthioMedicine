@@ -67,7 +67,7 @@ img
 {
 	margin: 0;
 	padding: 0;
-	height: 75px;
+	height: 95px;
 	background: url(bg_ra.gif) no-repeat center top;
 }
 
@@ -97,15 +97,13 @@ img
 {
 	color: #999;
 }
-.adGallery { margin: auto; }
 
 #mainmenu
 {
 	position: absolute;
-	top: 60px;
-	float: left;
+	top: 64px;
 	padding: 5px 0 0 0;
-	/* background-color: #3285CE; */
+	background-color: #3285CE;
 	font-family: verdana, tahoma, arial, sans-serif, Nyala;
 	font-size: 8pt;
 }
@@ -139,27 +137,17 @@ img
 #content
 {
     position: relative;
-    margin: 5px 0;
+    margin: 10px 0;
 }
 
-
-
-#footer {
-	font-size: 10px;
-	padding: 10px;
-	margin-left: 10px;
-	margin-right: 10px;
-	position: relative;
-	clear: both;
-	width: 100%;
-	border-top: solid 1px #C1C1C1;
+#footer
+{
+	padding: 15px;
+	margin: 20px 0 0 0;
+	font-size: 0.8em;
+	text-align: center;
+	border-top: 1px solid #EEE;
 }
-
-.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
-.ui-timepicker-div dl{ text-align: left; }
-.ui-timepicker-div dl dt{ height: 25px; }
-.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
-.ui-timepicker-div td { font-size: 90%; }
 
 .large-text
 {
@@ -253,40 +241,6 @@ table.dataGrid th
 	border: 1px #D5E3F5 solid;
 	background: #EBF3FD;
 	text-align: left;
-}
-
-
-.content {
-position:relative;
-}
-
-#leftcolumn {
-    margin-top: 20px;
-	padding-top: 30px;
-	float: left;
-	width: 150px;
-	margin: 0px;
-	margin-right: 0px;
-}
-
-#centercolumn {	
-	margin: 0px;
-	margin-left: 155px;
-	padding-top: 10px;
-	padding-left: 25px;
-	margin-top: 20px;
-    position:relative;
-    text-align: justify;
-}
-
-#rightcolumn {
-	float: right;
-	width: 150px;
-	margin: 0px;
-	margin-top: 20px;
-	margin-right: 0px;
-	padding-top: 10px;
-	position:relative;
 }
 
 table.dataGrid th.label

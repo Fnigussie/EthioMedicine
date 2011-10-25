@@ -1,100 +1,84 @@
+<?php
+if(!Yii::app()->request->isAjaxRequest)
+{
+	$cs=Yii::app()->clientScript;
+	$cs->registerCoreScript('jquery');
+	$cs->registerCoreScript('yii');
+	$cs->registerScriptFile(XHtml::jsUrl('common.js'), CClientScript::POS_HEAD);
+}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="en" />
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/translit.js" type="text/javascript"></script>
-        <script type="text/javascript">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="language" content="en" />
+<link rel="shortcut icon" href="<?php echo XHtml::imageUrl('favicon.ico'); ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo XHtml::cssUrl('960.css'); ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo XHtml::cssUrl('main.css'); ?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo XHtml::cssUrl('form.css'); ?>" />
 
-        function processKeys(event) {
-
-            //if (event.keyCode == 27 && !isExplorer()) { //escape to
-            realTime = document.getElementById("Amh").checked;
-            if (realTime) {
-                translitonkey(event);
-            }
-
-        }
-	</script>
-	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
-	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
-	<![endif]-->
-
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/style.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/css3.css" />
-
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/jui/base/jquery-ui.css" />
-
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+<title><?php echo $this->pageTitle; ?></title>
 </head>
 
 <body>
 
-<div class="container" id="page">
+<div id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+
+		<div id="menubar">
+			<?php $this->widget('ext.components.language.XLangMenu', array(
+				'encodeLabel'=>false,
+				'items'=>array(
+					'et'=>XHtml::imageLabel('et.png','Amharic',true),
+					'en'=>XHtml::imageLabel('en.png','English',true)
+				),
+			)); ?>
+		</div><!-- menubar -->
+
+		<div id="logo">
+			<?php echo XHtml::imageLabel('blocks.gif', Yii::app()->name);?>
+		</div><!-- logo -->
+
+		<div id="mainmenu">
+			<?php $this->widget('ptl.MainMenu'); ?>
+		</div><!-- mainmenu -->
+
 	</div><!-- header -->
-	
 
-	
-	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
-			'items'=>array(
-				array('label'=>'Home |', 'url'=>array('/site/index')),
-				array('label'=>'About | ', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact | ', 'url'=>array('/site/contact')),
-				array('label'=>'FAQ | ', 'url'=>array('/site/page', 'view'=>'faq')),
-			),
-		)); ?>
-	</div><!-- mb_mainmenu -->
-
-    <div id="top_right_box_social">
-			<?php $this->widget('application.extensions.social.social', array(
-				'style'=>'vertical', 
-					'networks' => array(
-					'twitter'=>array(
-						'data-via'=>'', //http://twitter.com/#!/YourPageAccount if exists else leave empty
-						), 
-					'googleplusone'=>array(
-						"size"=>"medium",
-						"annotation"=>"bubble",
-					), 
-					'facebook'=>array(
-						'href'=>'https://www.facebook.com/your_facebook_page',//asociate your page http://www.facebook.com/page 
-						'action'=>'recommend',//recommend, like
-						'colorscheme'=>'light',
-						'width'=>'120px',
-						)
-					)
-			));?>
-	</div>
-	<div id="top_right_box">
-
-	    <input id="Amh" type="checkbox"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/et.jpeg" alt="Change input method to Amharic" title="Change input method to Amharic" />
-	     &nbsp;|&nbsp;
-		 <?php echo CHtml::link('Home',array('/site/index')); ?>
-		 &nbsp;|&nbsp;
-			<?php echo CHtml::link('Contact',array('/site/contact')); ?>
-		&nbsp;|&nbsp;
-		<?php echo CHtml::link('About',array('/site/page?view=about')); 
-		     // echo CHtml::link('Logout ('.Yii::app()->user->name.')',array('/site/logout'));
-		?>
-	</div> 
+	<?php if(empty($this->layout)): ?>
+	<?php $this->widget('zii.widgets.CBreadcrumbs', array(
+		'links'=>$this->breadcrumbs,
+	)); ?>
+	<!-- breadcrumbs -->
+	<?php endif; ?>
 
 	<div id="content">
-
-	<div id="leftcolumn"><?php require_once 'leftbar.php';	?></div>
-				<div id="centercolumn"><?php echo $content; ?></div>
+		<?php echo $content; ?>
 	</div><!-- content -->
-</div><!-- page -->
-	<div id="footer">Copyright &copy; <?php echo date('Y'); ?> by the <a href="http://www.vedtechpro.com">Vedtechpro</a> Software Systems.<br/>
-		All Rights Reserved.<br/>
+
+	<div id="footer">
+		<?php echo Yii::app()->params['copyrightInfo']; ?>
 	</div><!-- footer -->
+
+</div><!-- page -->
+
+<?php $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+	'id'=>'help-dialog',
+	'options'=>array(
+		'title'=>Yii::t('ui','Help'),
+		'width'=>600,
+		'height'=>400,
+		'autoOpen'=>false,
+		'modal'=>true,
+	),
+));
+$this->endWidget('zii.widgets.jui.CJuiDialog'); ?>
+
+<?php $this->widget('ext.widgets.google.XGoogleAnalytics', array(
+	'visible'=>Yii::app()->params['googleAnalytics'] && !$this->isIpMatched(),
+	'tracker'=>Yii::app()->params['googleAnalyticsTracker'],
+)); ?>
+
 </body>
 </html>

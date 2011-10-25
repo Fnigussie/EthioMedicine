@@ -1,1 +1,3 @@
-test commit for ethiomedicine
+create a database named 'ethiopg' and run the sql in ethiopg.sql file to create the tables
+
+---needs mysql and sqlite database drivers
